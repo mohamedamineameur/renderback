@@ -6,7 +6,11 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-app.use(cors());
+app.use(cors({
+  origin: 'https://renderfrontt.onrender.com', // L'origine que tu veux autoriser
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Si tu veux autoriser les cookies ou les headers d'autorisation
+}));
 
 const sequelize = new Sequelize(process.env.POSTGRES_DB, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
     host: process.env.POSTGRES_HOST,
